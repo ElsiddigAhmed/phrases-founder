@@ -18,7 +18,7 @@ export function Navbar({ setModalStatus }) {
                 onClick={() => setModalStatus(true)}
                 id="open-popout"
               >
-                <button>add word</button>
+                <button>add phrase</button>
               </div>
             </div>
           </div>

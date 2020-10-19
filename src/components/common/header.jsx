@@ -24,15 +24,16 @@ export function Header() {
               type="text"
               name=""
               id=""
-              placeholder="Search for a word..."
+              placeholder="Search for a phrase..."
             />
           </div>
 
           <div className="input">
             <select name="" id="">
-              <option value="1">Language</option>
-              <option value="1">English</option>
-              <option value="1">Arabic</option>
+              <option value="1">Category</option>
+              <option value="1">Home</option>
+              <option value="1">School</option>
+              <option value="1">Work</option>
             </select>
           </div>
 
