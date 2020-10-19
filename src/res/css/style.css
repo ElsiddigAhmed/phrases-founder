@@ -1,0 +1,455 @@
+/* import font */
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+/* variables */
+:root {
+  --primary: #1350ba;
+  --button-bg: #21c466;
+  --hover: #17a050;
+  --lightgrey: #ebeef1;
+  --white: #fff;
+  --transition: 0.3s ease-in-out;
+}
+
+body,
+html {
+  font-family: "Poppins";
+  background-color: var(--lightgrey);
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+button,
+select,
+textarea,
+input {
+  font-family: Poppins;
+  outline: none;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.custom-container {
+  width: 85%;
+  margin: auto;
+}
+
+/* nav */
+.nav {
+  background-color: var(--primary);
+  padding: 20px 0;
+  border-bottom: 1px solid #286de2;
+}
+
+.nav .parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav .parent .child h2 {
+  color: var(--white);
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.nav .parent .child button {
+  font-size: 0.88rem;
+  color: var(--white);
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 14px 40px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav .parent .child button:hover {
+  background-color: var(--hover);
+}
+
+/* header */
+.header {
+  padding: 4em 0;
+  position: relative;
+  width: 100%;
+  background-color: var(--primary);
+  text-align: center;
+}
+
+.header h2 {
+  color: var(--white);
+  text-transform: capitalize;
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.header p {
+  color: var(--white);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.header .search {
+  background-color: var(--white);
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70%;
+  margin: 30px auto 0 auto;
+}
+
+.header .search .input {
+  flex: 1;
+  text-align: left;
+  border-right: 1px solid rgb(224, 224, 224);
+  margin-right: 8px;
+}
+
+.header .search .input:last-of-type {
+  border: none;
+}
+
+.header .search .input input {
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 0.88rem;
+  font-weight: 500;
+  height: 40px;
+  font-family: Poppins;
+}
+
+select {
+  color: rgb(112, 112, 112);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  border: none;
+  height: 40px;
+  display: block;
+  width: 100%;
+  background: url("../icons/arrow-angle-pointing-down.svg") no-repeat 95% center;
+  background-size: 10px;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.header .search .input option {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.header .search button {
+  background-color: var(--button-bg);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.header .search button:hover {
+  background-color: var(--hover);
+}
+
+.header .search button .icon {
+  height: 15px;
+  width: 15px;
+}
+
+.header .search button .icon img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* search result */
+.result {
+  padding: 100px 0;
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: var(--lightgrey);
+}
+
+.result .child {
+  height: auto;
+  padding: 30px;
+  background-color: var(--white);
+  border-radius: 5px;
+  margin: auto;
+  width: 70%;
+  position: relative;
+}
+
+.result .child .word {
+  padding: 10px;
+  background-color: rgb(250, 250, 250);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result .child .word h4 {
+  font-weight: 600;
+  font-size: 1.2em;
+  text-transform: capitalize;
+}
+
+.result .child .word span {
+  background-color: #bfd7ff;
+  color: #011536;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.result .child .means h2 {
+  font-size: 1em;
+  text-transform: capitalize;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.result .child .means p {
+  font-size: 0.99rem;
+}
+
+.result .child .bottom-cta {
+  text-align: center;
+}
+
+/* add word */
+.add-word {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  width: 50%;
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 30px 30px 40px 30px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.281);
+  transform: scale(0);
+  z-index: -1;
+}
+
+.add-word.open {
+  transform: scale(1);
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.add-word .pop-header {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-word .pop-header h4 {
+  font-weight: 600;
+  font-size: 1em;
+  text-transform: capitalize;
+}
+
+.add-word .pop-header button {
+  background-color: rgb(255, 208, 217);
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: crimson;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-word .pop-body .add-input {
+  background-color: var(--lightgrey);
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.add-word .pop-body .add-input input,
+.add-word .pop-body .add-input select,
+.add-word .pop-body .add-input textarea {
+  padding: 14px;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  font-size: 0.88rem;
+  height: auto;
+}
+
+.add-word .pop-body .d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-word .pop-body .d-flex .add-input {
+  width: 49%;
+}
+
+.add-word .pop-body .add-input textarea {
+  resize: none;
+  height: 140px;
+}
+
+.add-word .pop-body button {
+  font-size: 0.88rem;
+  color: var(--white);
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 14px 40px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  width: 100%;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.add-word .pop-body button:hover {
+  background-color: var(--hover);
+}
+
+footer {
+  padding: 20px;
+  background-color: var(--white);
+  text-align: center;
+}
+
+footer .icon {
+  height: 24px;
+  width: 24px;
+  overflow: hidden;
+  margin: auto;
+}
+
+footer .icon img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+footer p {
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-top: 12px;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 1000px) {
+  .nav .parent .child button {
+    padding: 14px;
+    font-size: 0.8rem;
+  }
+
+  .nav .parent .child h2 {
+    font-size: 1em;
+  }
+
+  .header h2 {
+    font-size: 1.4em;
+  }
+
+  .header p {
+    font-size: 0.9rem;
+  }
+
+  .header .search {
+    width: 90%;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .header .search .input {
+    width: 95%;
+    margin: auto;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    border-right: 0;
+  }
+
+  .header .search .input select,
+  .header .search .input input {
+    padding: 10px 0;
+  }
+
+  .header .search button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .result .child {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .result .child .word h4 {
+    font-size: 1em;
+  }
+
+  .result .child .means h2,
+  .add-word .pop-header h4 {
+    font-size: 0.9rem;
+  }
+
+  .result .child .means p {
+    font-size: 0.88rem;
+  }
+
+  .add-word {
+    width: 90%;
+  }
+
+  .add-word .pop-body .d-flex {
+    flex-direction: column;
+  }
+
+  .add-word .pop-body .d-flex .add-input {
+    width: 100%;
+  }
+
+  footer .icon {
+    height: 22px;
+    width: 22px;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+  }
+}
+
+.custom-container > .child::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(219, 219, 219, 0.699);
+}
