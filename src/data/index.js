@@ -6,9 +6,9 @@ import storage from "redux-persist/lib/storage";
 import { reduces } from "./reduces";
 
 const persistConfig = {
-  key: "Phrases",
+  key: "NON",
   storage: storage,
-  whitelist: ["Phrases"], // which reducer want to store
+  whitelist: ["NON"], // which reducer want to store
 };
 const PR = persistReducer(persistConfig, reduces);
 

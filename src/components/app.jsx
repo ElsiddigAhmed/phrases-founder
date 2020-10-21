@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../res/css/style.css";
 import { Navbar } from "./common/navbar";
 import { Header } from "./common/header";
@@ -6,71 +6,114 @@ import { Footer } from "./common/footer";
 import { AddPhrase } from "./common/add-phrase";
 import { connect } from "react-redux";
 import { actions } from "../data/reduces/";
-function Home(props) {
-  const [modalStatus, setModalStatus] = useState(false);
-  const [phrases, setPhrases] = useState(null);
 
-  useEffect(() => {
-    setPhrases(props.phrases);
-  }, [props]);
+class Home extends React.Component {
+  state = {
+    categories: [],
+    phrases: [],
+    accents: [],
+    modalStatus: false,
+    loading: false,
+  };
 
-  useEffect(() => {
-    props.getPhrases();
-  });
+  componentDidMount() {
+    this.props.getCategories();
+    this.props.getAccents();
+  }
 
-  return (
-    <div>
-      <Navbar setModalStatus={setModalStatus} />
-      <Header />
+  UNSAFE_componentWillReceiveProps(newProps) {
+    this.setState({ categories: newProps?.categories, phrases: newProps?.phrases, accents: newProps?.accents });
+    if (newProps?.phrases[0]) {
+      this.setState({ loading: false });
+    } else {
+      this.setState({ loading: false });
+    }
+  }
 
-      <div className="result">
-        <div className="custom-container">
-          {phrases ? (
-            phrases.map((phrase, idx) => {
-              return (
-                <div className="child" key={idx}>
-                  <div className="word">
-                    <h4>{phrase.phrase}</h4>
+  setModalStatus = (modalStatus) => {
+    this.setState({ modalStatus });
+  };
 
-                    <span className="accent">
+  getPhrasesByFilter = (filter) => {
+    this.setState({ loading: true });
+
+    if (filter.accent !== "Accent" && filter.category !== "Category") {
+      return this.props.getPhrasesByFilter(`?accent=${filter.accent}&category=${filter.category}`);
+    }
+
+    return this.props.getPhrasesByFilter("");
+  };
+
+  addPhrase = (data) => {
+    this.props.addPhrase(data);
+    this.setState({ loading: true });
+  };
+  render() {
+    return (
+      <div>
+        <Navbar setModalStatus={this.setModalStatus} />
+        <Header categories={this.state.categories} accents={this.state.accents} getPhrasesByFilter={this.getPhrasesByFilter} />
+
+        <div className="result">
+          {this.state.loading ? (
+            <div className="child" style={{ background: "none" }}>
+              <div className="bottom-cta" style={{ textAlign: "center" }}>
+                <div className="lds-dual-ring"></div>
+              </div>
+            </div>
+          ) : (
+            <div className="custom-container">
+              {this.state.phrases && this.state.phrases[0] ? (
+                this.state.phrases?.map((phrase, idx) => {
+                  return (
+                    <div className="child" key={idx}>
+                      <div className="word">
+                        <h4>{phrase?.phrase}</h4>
+
+                        <span className="accent">
+                          <span role="img" aria-label="img">
+                            🏁{" "}
+                          </span>{" "}
+                          {phrase.accent?.accent}
+                        </span>
+                      </div>
+
+                      <div className="means">
+                        <h2>meaning :</h2>
+                        <small>{phrase?.meaning}</small>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="child">
+                  <div className="bottom-cta" style={{ textAlign: "center" }}>
+                    {/* <div class="lds-dual-ring"></div> */}
+                    <h2>
+                      Search for a phrase right now
                       <span role="img" aria-label="img">
-                        🏁{" "}
-                      </span>{" "}
-                      {phrase.accent}
-                    </span>
-                  </div>
-
-                  <div className="means">
-                    <h2>meaning :</h2>
-                    <small>{phrase.meaning}</small>
+                        {" "}
+                        👆{" "}
+                      </span>
+                      or add new one!
+                    </h2>
                   </div>
                 </div>
-              );
-            })
-          ) : (
-            <div className="child">
-              <div className="bottom-cta">
-                <h2>
-                  Search for a phrase right now
-                  <span role="img" aria-label="img">
-                    {" "}
-                    👆{" "}
-                  </span>
-                  or add new one!
-                </h2>
-              </div>
+              )}
             </div>
           )}
         </div>
+        <AddPhrase
+          categories={this.state.categories}
+          accents={this.state.accents}
+          addPhrase={this.addPhrase}
+          modalStatus={this.state.modalStatus}
+          setModalStatus={this.setModalStatus}
+        />
+        <Footer />
       </div>
-      <AddPhrase
-        addPhrase={props.addPhrase}
-        modalStatus={modalStatus}
-        setModalStatus={setModalStatus}
-      />
-      <Footer />
-    </div>
-  );
+    );
+  }
 }
 
 /*********************************************/
@@ -79,7 +122,9 @@ function Home(props) {
 
 const mapStateToProps = (state) => {
   return {
-    phrases: state.Phrases.phrases,
+    phrases: state.Phrases?.phrases,
+    categories: state.Phrases?.categories,
+    accents: state.Phrases?.accents,
   };
 };
 

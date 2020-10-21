@@ -1,9 +1,11 @@
 import axios from "axios";
-const url = "localhost:4014/api/";
+const url = "https://safe-inlet-22197.herokuapp.com";
+// const url = "http://localhost:1234";
 export const getData = async (route = "/") => {
   try {
-    const res = await axios.get(url + route);
-    return res.data;
+    const { data } = await axios.get(url + route);
+
+    return data;
   } catch (err) {
     return err;
   }

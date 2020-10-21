@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { Phrases, getPhrases, addPhrase } from "./phrases";
+import { Phrases, getPhrases, addPhrase, getCategories, getAccents, getPhrasesByFilter } from "./phrases";
 export const reduces = combineReducers({
   Phrases,
 });
@@ -7,4 +7,7 @@ export const reduces = combineReducers({
 export const actions = {
   getPhrases,
   addPhrase,
+  getCategories,
+  getAccents,
+  getPhrasesByFilter,
 };
